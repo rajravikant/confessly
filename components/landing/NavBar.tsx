@@ -1,15 +1,15 @@
 import React from "react";
-import Button from "../ui/Button";
+import {Button} from "@/components/ui/Button";
 import Link from "next/link";
-import Logo from "../ui/Logo";
+import Logo from "@/components/ui/Logo";
 
 const NavBar: React.FC = () => {
   return (
-    <nav className="flex justify-between items-center p-12 bg-transparent text-white absolute top-0 left-0 right-0 z-10">
+    <nav className="flex justify-between items-center p-12 bg-transparent text-white absolute top-0 left-0 right-0 z-40">
       <Logo />
 
       <Link href={"/confessions"}>
-        <Button variant="primary" size="medium" className="bg-gray-700/80">
+        <Button  size="md" >
           <span className="text-sm">Confess</span>
         </Button>
       </Link>

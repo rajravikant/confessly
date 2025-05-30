@@ -44,9 +44,21 @@ function getRandomItem<T>(array: T[]): T {
   return array[Math.floor(Math.random() * array.length)];
 }
 
-export function generateRandomUsername(): string {
+function getRandomUsername(): string {
   const adjective = getRandomItem(adjectives);
   const noun = getRandomItem(nouns);
   const randomNumber = Math.floor(Math.random() * 1000); // Optional: add some uniqueness
   return `${adjective}${noun}${randomNumber}`; // Example: SilentWolf823
+}
+
+function getRandomAvatar(): string {
+  const randomNumber = Math.floor(Math.random() * 1000);
+  return `https://api.dicebear.com/9.x/identicon/svg?seed=${randomNumber}`; 
+}
+
+
+export function generateRandomIdentity(): { username: string; avatar: string } {
+  const username = getRandomUsername();
+  const avatar = getRandomAvatar();
+  return { username, avatar };
 }

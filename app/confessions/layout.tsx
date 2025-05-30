@@ -1,6 +1,10 @@
-import React from 'react'
-import ShareNavbar from './(components)/shared/ShareNavbar';
-import Footer from '@/components/landing/Footer';
+import React from "react";
+import dynamic from "next/dynamic";
+const ShareNavbar =  dynamic(() => import("@/app/confessions/(components)/shared/ShareNavbar"));
+const Footer =  dynamic(() => import("@/components/landing/Footer"));
+import ReactQueryProvider from "@/lib/QueryProvider";
+import { AuthProvider } from "@/lib/AuthProvider";
+import { Toaster } from "@/components/ui/sonner";
 
 const page = ({
   children,
@@ -8,12 +12,17 @@ const page = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <div className='bg-primary'>
-      <ShareNavbar/>
-      {children}
-        <Footer className='py-16 lg:px-32 px-16'/>
-    </div>
-  )
-}
+    <ReactQueryProvider>
+      <AuthProvider>
+        <div className="bg-background">
+          <ShareNavbar />
+          <Toaster />
+          {children}
+          <Footer className="py-16 lg:px-32 px-8" />
+        </div>
+      </AuthProvider>
+    </ReactQueryProvider>
+  );
+};
 
-export default page
+export default page;

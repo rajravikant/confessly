@@ -1,13 +1,14 @@
 "use client";
 import React, { useState } from "react";
-import { Mood, moods } from "@/lib/data";
+import { moods } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import MoodChips from "./Chip";
 import { AnimatePresence, motion } from "motion/react";
 import { FaPlus } from "react-icons/fa6";
+import { Mood } from "@/types";
 
 interface SelectionWheelProps {
-  onSelectMood: (mood: string) => void;
+  onSelectMood: (mood: Mood) => void;
 }
 
 const SelectionWheel = ({ onSelectMood }: SelectionWheelProps) => {
@@ -16,7 +17,7 @@ const SelectionWheel = ({ onSelectMood }: SelectionWheelProps) => {
 
   const handleMoodChange = (mood: Mood) => {
     setSelectedMood(mood);
-    onSelectMood(mood.border);
+    onSelectMood(mood);
     setIsWheelOpen(false);
   };
 

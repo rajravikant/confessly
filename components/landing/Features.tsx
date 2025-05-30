@@ -15,7 +15,7 @@ const Features = () => {
                 {features.map(({id,title,image,description})=>{
                     return(
                         <div key={id} className='flex items-center justify-center flex-col '>
-                            <Image src={image} alt="image" />
+                            <Image src={image} alt="image"  className='hue-rotate-90 saturate-150'/>
                             <div className='text-center  max-w-1/2 pt-6 space-y-3'>
                             <h3 className='text-white text-lg'>{title}</h3>
                             <p className='text-muted-foreground text-sm'>{description}</p>

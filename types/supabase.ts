@@ -36,30 +36,27 @@ export type Database = {
     Tables: {
       confessions: {
         Row: {
-          content: string | null
+          content: string
           created_at: string
-          downvotes: number | null
+          echoes: number
           id: string
-          mood: string | null
-          upvotes: number | null
+          mood: string
           user_id: string | null
         }
         Insert: {
-          content?: string | null
+          content: string
           created_at?: string
-          downvotes?: number | null
+          echoes?: number
           id?: string
-          mood?: string | null
-          upvotes?: number | null
+          mood: string
           user_id?: string | null
         }
         Update: {
-          content?: string | null
+          content?: string
           created_at?: string
-          downvotes?: number | null
+          echoes?: number
           id?: string
-          mood?: string | null
-          upvotes?: number | null
+          mood?: string
           user_id?: string | null
         }
         Relationships: [
@@ -67,68 +64,29 @@ export type Database = {
             foreignKeyName: "confessions_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
-            referencedRelation: "users"
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
         ]
       }
-      reactions: {
-        Row: {
-          confession_id: string | null
-          created_at: string
-          id: number
-          reaction_type: string | null
-          user_id: string | null
-        }
-        Insert: {
-          confession_id?: string | null
-          created_at?: string
-          id?: number
-          reaction_type?: string | null
-          user_id?: string | null
-        }
-        Update: {
-          confession_id?: string | null
-          created_at?: string
-          id?: number
-          reaction_type?: string | null
-          user_id?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "reactions_confession_id_fkey"
-            columns: ["confession_id"]
-            isOneToOne: false
-            referencedRelation: "confessions"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "reactions_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      users: {
+      profiles: {
         Row: {
           avatar_url: string | null
-          created_at: string
+          confession_count: number | null
           id: string
-          username: string
+          username: string | null
         }
         Insert: {
           avatar_url?: string | null
-          created_at?: string
-          id?: string
-          username: string
+          confession_count?: number | null
+          id: string
+          username?: string | null
         }
         Update: {
           avatar_url?: string | null
-          created_at?: string
+          confession_count?: number | null
           id?: string
-          username?: string
+          username?: string | null
         }
         Relationships: []
       }
@@ -137,7 +95,14 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      increment_confession_count: {
+        Args: { userid: string }
+        Returns: undefined
+      }
+      decrement_confession_count: {
+        Args: { userid: string }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never

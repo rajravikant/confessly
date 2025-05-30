@@ -2,13 +2,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import cta_img from "@/assets/images/confused_cta.png"
-import Button from '@/components/ui/Button';
+import {Button} from '@/components/ui/Button';
 
 const CTA: React.FC = () => {
     return (
         <div className="flex flex-wrap items-center justify-between bg-gray-200/10 text-white rounded-lg shadow-lg lg:my-5 my-3">
-            <div className="flex flex-col px-10 py-10 lg:py-0">
-                <h2 className="text-2xl italic mb-4">Have something so say ? Confess  it now</h2>
+            
+            <div className="flex flex-col items-center lg:items-start px-10 py-10 lg:py-0">
+                <h2 className="lg:text-2xl text-xl italic mb-4 text-center lg:text-left">Have something so say ? Confess  it now</h2>
                 <Link href={"/confessions/share"}>
                 <Button>Start Confessing</Button>
                 </Link>
